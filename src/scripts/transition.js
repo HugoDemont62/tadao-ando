@@ -19,6 +19,8 @@ export default class Barba {
 					},
 					once({ next }) {
 						console.log('First page load!')
+
+						// TODO : mettre ici le preloader
 						return gsap.from(next.container, {
 							opacity: 0,
 							duration: 2,
