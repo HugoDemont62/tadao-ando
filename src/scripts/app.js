@@ -1,23 +1,27 @@
-import Barba from './transition';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import MouseFollower from 'mouse-follower';
+import Barba from './transition'
+import Lenis from 'lenis'
+import gsap from 'gsap'
+import MouseFollower from 'mouse-follower'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import HomeAnimation from './component/homeAnimation.js'
 import Close from './component/close.js'
+import Parallax from './component/parallax.js'
 
 export default class App {
 	constructor() {
 		// Enregistre GSAP avec ScrollTrigger
 		gsap.registerPlugin(ScrollTrigger);
+
 		// Initialise les fonctions principales
 		this._getElements();
 		this._initBarba();
 		this._initLenis();
+		this._initClose();
+		this._initParallax();
 		this._initCursor();
 		this._initHero();
 		this._initHomeAnimation();
-		this._initClose();
+
 	}
 
 	// Récupération des éléments HTML
@@ -26,13 +30,13 @@ export default class App {
 		this.homeHero = document.querySelector('.home-hero');
 		this.mediaElements = document.querySelectorAll('.home-hero .media');
 		this.heroTitle = document.querySelector('.home-hero h1');
-
 	}
 
 	_initCursor() {
 		MouseFollower.registerGSAP(gsap);
 		const cursor = new MouseFollower();
 
+		// Gestion des éléments existants
 		this.strongElements.forEach(element => {
 			element.addEventListener('mouseenter', () => {
 				gsap.to(cursor.el, {
@@ -102,6 +106,10 @@ export default class App {
 
 	_initClose() {
 		new Close();
+	}
+
+	_initParallax() {
+		new Parallax();
 	}
 
 }

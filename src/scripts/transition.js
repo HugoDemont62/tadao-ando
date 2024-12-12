@@ -13,28 +13,38 @@ export default class Barba {
 			transitions: [
 				{
 					name: 'opacity-transition',
-					leave({ current }) {
-						return gsap.to(current.container, {
-							opacity: 0,
-							duration: 2,
-						})
-					},
+					// Transition de la première page
 					once: async ({ next }) => {
-						console.log('First page load!')
+						console.log('First page load!');
 
-						// new Preloader()
+						// Instanciation et attente du préloader
+						const preloader = new Preloader();
+						await preloader.init(); // Attend que le préloader soit terminé
 
-						// Animation GSAP
+						console.log('Préloader terminé !');
+
+						// Lance l'animation Hero une fois le préloader terminé
+						this.app._initHero();
+
+						// Animation du container de la page
 						return gsap.from(next.container, {
 							opacity: 0,
 							duration: 2,
 						});
 					},
-					enter({ next, current }) {
+					// Transition au changement de page
+					leave: ({ current }) => {
+						return gsap.to(current.container, {
+							opacity: 0,
+							duration: 1,
+						});
+					},
+					enter: ({ next }) => {
+						// Animation d'entrée du nouveau container
 						return gsap.from(next.container, {
 							opacity: 0,
-							duration: 2,
-						})
+							duration: 1,
+						});
 					},
 				},
 			],

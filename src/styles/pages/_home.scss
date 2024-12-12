@@ -207,7 +207,11 @@
 
 	&-projects {
 		padding-top: vw(80);
-		padding-bottom: vw(160);
+		padding-bottom: vw(0);
+		height: 200vh;
+		overflow-y: visible;
+		position: relative;
+		z-index: 100;
 
 		ul {
 			list-style-type: none;
@@ -243,5 +247,10 @@
 				}
 			}
 		}
+		.behind {
+			transform: translateY(5%);
+			position: relative;
+		}
 	}
+
 }
