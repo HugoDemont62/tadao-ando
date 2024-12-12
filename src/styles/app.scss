@@ -73,3 +73,9 @@ body {
 	font-size: 24px;
 	font-weight: bold;
 }
+
+.home-quote strong {
+	display: inline-block; /* Nécessaire pour appliquer transform correctement */
+	transform-origin: center center; /* Définit le centre comme point de pivot */
+	perspective: 1000px; /* Nécessaire pour les effets 3D */
+}

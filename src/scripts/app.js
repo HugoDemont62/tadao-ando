@@ -3,18 +3,19 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import MouseFollower from 'mouse-follower';
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import HomeAnimation from './component/homeAnimation.js'
 
 export default class App {
 	constructor() {
 		// Enregistre GSAP avec ScrollTrigger
 		gsap.registerPlugin(ScrollTrigger);
-
 		// Initialise les fonctions principales
 		this._getElements();
 		this._initBarba();
 		this._initLenis();
 		this._initCursor();
 		this._initHero();
+		this._initHomeAnimation();
 	}
 
 	// Récupération des éléments HTML
@@ -65,6 +66,10 @@ export default class App {
 
 	_initBarba() {
 		new Barba();
+	}
+
+	_initHomeAnimation() {
+		new HomeAnimation();
 	}
 
 	_initHero() {
