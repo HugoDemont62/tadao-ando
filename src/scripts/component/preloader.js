@@ -2,70 +2,74 @@ import gsap from 'gsap'
 
 export default class Preloader {
 	constructor() {
-		this._getElements();
+		this._getElements()
 		this.init()
 	}
 
 	_getElements() {
-		this.preloader = document.querySelector('#preloader');
-		this.svgLogo = this.preloader?.querySelector('svg');
-		this.rect = this.svgLogo?.querySelector('rect');
-		this.line = this.svgLogo?.querySelector('line');
+		this.preloader = document.querySelector('#preloader')
+		this.svgLogo = this.preloader?.querySelector('svg')
+		this.rect = this.svgLogo?.querySelector('rect')
+		this.line = this.svgLogo?.querySelector('line')
 	}
 
 	init() {
-		console.log("Préloader initialisé !");
+		console.log('Préloader initialisé!')
 
-		return new Promise((resolve) => {
-			// Vérifie les éléments sélectionnés
+		return new Promise(resolve => {
+			// Verify selected elements
 			if (!this.preloader || !this.rect || !this.line) {
-				console.error("Préloader introuvable ou éléments absents !");
-				resolve();
-				return;
+				console.error('Préloader introuvable ou éléments absents!')
+				resolve()
+				return
 			}
 
-			// Récupère l'élément du compteur
-			const counter = document.querySelector('#loading-counter');
+			const counter = document.querySelector('#loading-counter')
 			if (!counter) {
-				console.error("Élément du compteur introuvable !");
-				resolve();
-				return;
+				console.error('Élément du compteur introuvable!')
+				resolve()
+				return
 			}
 
-			document.body.classList.add('loading');
-			let progress = 0;
-			console.log("Départ de l'animation du préloader...");
+			document.body.classList.add('loading')
+			console.log('Départ de l\'animation du préloader...')
 
-			// Démarre l'intervalle
-			const interval = setInterval(() => {
-				progress += 2; // Incrémente le progrès
-				progress = Math.min(progress, 100); // Bloque à 100 % max
+			// Create GSAP timeline for smooth animation
+			const tl = gsap.timeline({
+				onComplete: () => {
+					this._removePreloader()
+					resolve()
+				},
+			})
 
-				// Animation du rectangle et de la ligne
-				const width = (progress / 100) * 30; // Largeur max = 30
-				this.rect.setAttribute('width', width);
-				this.line.setAttribute('x2', 5 + width);
+			// Set initial states
+			gsap.set([this.rect, this.line], { attr: { width: 0, x2: 5 } })
+			gsap.set(counter, { textContent: '0%' })
 
-				// Mise à jour du compteur
-				counter.textContent = `${progress}%`;
-
-				if (progress === 100) {
-					clearInterval(interval) // Termine l'animation
-					this._removePreloader() // Supprime le préloader
-					resolve() // Transition vers le chargement suivant
-				}
-			}, 50); // Mise à jour toutes les 50ms
-		});
+			// Animate loading progress
+			tl.to([this.rect, this.line], {
+				duration: 2,
+				attr: {
+					width: 30, // Max width for rect
+					x2: 35, // 5 + 30 for line
+				},
+				ease: 'power1.inOut',
+				onUpdate: () => {
+					const progress = Math.round(tl.progress() * 100)
+					counter.textContent = `${progress}%`
+				},
+			})
+		})
 	}
 
 	_removePreloader() {
 		gsap.to(this.preloader, {
-			opacity: 0, // Fait disparaître le préloader
+			autoAlpha: 0,
 			duration: 0.5,
 			onComplete: () => {
-				this.preloader.style.display = 'none'; // Cache complètement
-				document.body.classList.remove('loading');
+				document.body.classList.remove('loading')
+				this.preloader.remove() // More modern than removeChild
 			},
-		});
+		})
 	}
 }
