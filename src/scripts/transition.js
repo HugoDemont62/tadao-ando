@@ -22,7 +22,7 @@ export default class Barba {
 					once: async ({ next }) => {
 						console.log('First page load!')
 
-						new Preloader()
+						// new Preloader()
 
 						// Animation GSAP
 						return gsap.from(next.container, {

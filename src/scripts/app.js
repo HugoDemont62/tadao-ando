@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import MouseFollower from 'mouse-follower';
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import HomeAnimation from './component/homeAnimation.js'
+import Close from './component/close.js'
 
 export default class App {
 	constructor() {
@@ -16,6 +17,7 @@ export default class App {
 		this._initCursor();
 		this._initHero();
 		this._initHomeAnimation();
+		this._initClose();
 	}
 
 	// Récupération des éléments HTML
@@ -96,6 +98,10 @@ export default class App {
 				start: 'top 80%',
 			},
 		});
+	}
+
+	_initClose() {
+		new Close();
 	}
 
 }
