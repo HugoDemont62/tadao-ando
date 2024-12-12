@@ -1,12 +1,14 @@
 import barba from '@barba/core'
 import gsap from 'gsap'
+import Preloader from './component/preloader.js'
 
 export default class Barba {
 	constructor() {
-		this.init()
+		this.init();
 	}
 
 	init() {
+		// Configuration de Barba.js
 		barba.init({
 			transitions: [
 				{
@@ -17,22 +19,18 @@ export default class Barba {
 							duration: 2,
 						})
 					},
-					once({ next }) {
+					once: async ({ next }) => {
 						console.log('First page load!')
 
-						// TODO : mettre ici le preloader
+						new Preloader()
+
+						// Animation GSAP
 						return gsap.from(next.container, {
 							opacity: 0,
 							duration: 2,
-						})
+						});
 					},
 					enter({ next, current }) {
-						if (!current) {
-							console.log('First load!')
-						} else {
-							console.log('Not first load')
-						}
-
 						return gsap.from(next.container, {
 							opacity: 0,
 							duration: 2,

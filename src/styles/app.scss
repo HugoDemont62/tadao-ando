@@ -61,6 +61,14 @@ body {
 	height: 100px;
 }
 
+#loading-counter {
+	font-size: 24px;
+	font-weight: bold;
+	color: var(--color-primary);
+	text-align: center;
+	z-index: 10;
+}
+
 .preloader-progress {
 	font-size: 24px;
 	font-weight: bold;
