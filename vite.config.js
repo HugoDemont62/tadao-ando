@@ -9,8 +9,12 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				main: 'pages/home.html',
+				projects: 'pages/projects.html',
 			},
 		},
+	},
+	server: {
+		open: '/pages/home.html', // This will open home.html when you run the dev server
 	},
 	css: {
 		preprocessorOptions: {

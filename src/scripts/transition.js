@@ -23,8 +23,6 @@ export default class Barba {
 
 						console.log('Préloader terminé !');
 
-						// Lance l'animation Hero une fois le préloader terminé
-						this.app._initHero();
 
 						// Animation du container de la page
 						return gsap.from(next.container, {

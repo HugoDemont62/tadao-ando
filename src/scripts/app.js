@@ -6,6 +6,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import HomeAnimation from './component/homeAnimation.js'
 import Close from './component/close.js'
 import Parallax from './component/parallax.js'
+import HomeHero from './component/homeHero.js'
 
 export default class App {
 	constructor() {
@@ -21,15 +22,12 @@ export default class App {
 		this._initCursor();
 		this._initHero();
 		this._initHomeAnimation();
-
 	}
 
 	// Récupération des éléments HTML
 	_getElements() {
 		this.strongElements = document.querySelectorAll('strong');
-		this.homeHero = document.querySelector('.home-hero');
-		this.mediaElements = document.querySelectorAll('.home-hero .media');
-		this.heroTitle = document.querySelector('.home-hero h1');
+
 	}
 
 	_initCursor() {
@@ -79,29 +77,7 @@ export default class App {
 	}
 
 	_initHero() {
-		gsap.from(this.mediaElements, {
-			opacity: 0,
-			y: 50,
-			duration: 1,
-			stagger: 0.2,
-			ease: 'power2.out',
-			scrollTrigger: {
-				trigger: this.homeHero,
-				start: 'top 80%',
-			},
-		});
-
-		gsap.from(this.heroTitle, {
-			opacity: 0,
-			y: 20,
-			duration: 1,
-			delay: 0.5,
-			ease: 'power2.out',
-			scrollTrigger: {
-				trigger: this.homeHero,
-				start: 'top 80%',
-			},
-		});
+		new HomeHero();
 	}
 
 	_initClose() {
