@@ -1,5 +1,6 @@
 $mf-color-base: #0047ff !default;
 $mf-color-text: #000611 !default;
+$mf-color-sec: #ffb800 !default;
 
 .mf-cursor {
     $root:&;
@@ -33,6 +34,9 @@ $mf-color-text: #000611 !default;
         opacity: 1; /* Devient visible */
     }
 
+    &.-secColor {
+        color: $mf-color-sec;
+    }
 
     &:before {
         content:"";

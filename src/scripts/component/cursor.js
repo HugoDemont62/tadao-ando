@@ -1,9 +1,13 @@
 import MouseFollower from 'mouse-follower';
 import gsap from 'gsap';
 
-export function initCursor(strongElements) {
+export function initCursor() {
 	MouseFollower.registerGSAP(gsap);
 	const cursor = new MouseFollower();
+
+	// Récupération des éléments HTML
+	const strongElements = document.querySelectorAll('strong');
+	const footer = document.querySelector('footer');
 
 	// Gestion des éléments existants
 	strongElements.forEach(element => {
@@ -24,5 +28,14 @@ export function initCursor(strongElements) {
 				onComplete: () => cursor.removeState('-highlight')
 			});
 		});
+	});
+
+	// Gestion du footer
+	footer.addEventListener('mouseenter', () => {
+		cursor.addState('-secColor');
+	});
+
+	footer.addEventListener('mouseleave', () => {
+		cursor.removeState('-secColor');
 	});
 }
