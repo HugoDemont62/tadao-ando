@@ -4,7 +4,7 @@ export default class HomeHero {
 	constructor() {
 		// Récupérer les listes ou éléments ciblés et initialiser GSAP
 		this._getElements();
-		this.init();
+		this._init();
 	}
 
 	_getElements() {
@@ -13,7 +13,7 @@ export default class HomeHero {
 		this.heroTitle = document.querySelector('.home-hero h1');
 	}
 
-	init() {
+	_init() {
 		gsap.from(this.mediaElements, {
 			opacity: 0,
 			y: 50,

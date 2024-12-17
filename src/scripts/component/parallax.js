@@ -4,7 +4,7 @@ export default class Parallax {
 	constructor() {
 		// Récupérer les listes ou éléments ciblés et initialiser GSAP
 		this._getElements();
-		this.init();
+		this._init();
 	}
 
 	_getElements() {
@@ -25,7 +25,7 @@ export default class Parallax {
 		];
 	}
 
-	init() {
+	_init() {
 		// Vérifier que la structure existe avant de tout initialiser
 		if (!this.elements.length) return;
 

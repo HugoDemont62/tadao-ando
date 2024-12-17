@@ -2,8 +2,8 @@ import gsap from 'gsap'
 
 export default class Preloader {
 	constructor() {
-		this._getElements()
-		this.init()
+		this._getElements();
+		this._init().then(r => console.log('Préloader terminé!'));
 	}
 
 	_getElements() {
@@ -13,7 +13,7 @@ export default class Preloader {
 		this.line = this.svgLogo?.querySelector('line')
 	}
 
-	init() {
+	_init() {
 		console.log('Préloader initialisé!')
 
 		return new Promise(resolve => {
