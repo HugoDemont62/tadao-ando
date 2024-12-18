@@ -7,6 +7,7 @@ import Parallax from './component/parallax.js';
 import HomeHero from './component/homeHero.js';
 import { initCursor } from './component/cursor.js';
 import { initLenis } from './component/lenis.js';
+import Intro from './component/intro.js';
 
 export default class App {
 	constructor() {
@@ -22,6 +23,7 @@ export default class App {
 		this._initCursor();
 		this._initHero();
 		this._initHomeAnimation();
+		this._initIntro();
 	}
 
 	// Récupération des éléments HTML
@@ -55,6 +57,11 @@ export default class App {
 
 	_initParallax() {
 		new Parallax();
+	}
+
+	_initIntro() {
+		console.log('init intro');
+		new Intro();
 	}
 }
 

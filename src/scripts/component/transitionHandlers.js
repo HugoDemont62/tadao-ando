@@ -1,14 +1,17 @@
 import gsap from 'gsap';
 
+const overlay = document.createElement('div');
+overlay.style.position = 'fixed';
+overlay.style.top = 0;
+overlay.style.left = 0;
+overlay.style.width = '0%';
+overlay.style.height = '100%';
+overlay.style.backgroundColor = '#2323ff';
+overlay.style.zIndex = 9999;
+
+
+
 export function leave({ current }) {
-  const overlay = document.createElement('div');
-  overlay.style.position = 'fixed';
-  overlay.style.top = 0;
-  overlay.style.left = 0;
-  overlay.style.width = '0%';
-  overlay.style.height = '100%';
-  overlay.style.backgroundColor = '#2323ff';
-  overlay.style.zIndex = 9999;
   document.body.appendChild(overlay);
 
   const tl = gsap.timeline({
@@ -29,14 +32,6 @@ export function leave({ current }) {
 }
 
 export function enter({ next }) {
-  const overlay = document.createElement('div');
-  overlay.style.position = 'fixed';
-  overlay.style.top = 0;
-  overlay.style.left = 0;
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.backgroundColor = '#2323ff';
-  overlay.style.zIndex = 9999;
   document.body.appendChild(overlay);
 
   const tl = gsap.timeline({
