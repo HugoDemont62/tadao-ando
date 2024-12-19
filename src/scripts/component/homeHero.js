@@ -2,41 +2,44 @@ import gsap from 'gsap';
 
 export default class HomeHero {
 	constructor() {
-		// Récupérer les listes ou éléments ciblés et initialiser GSAP
 		this._getElements();
 		this._init();
 	}
 
 	_getElements() {
 		this.homeHero = document.querySelector('.home-hero');
-		this.mediaElements = document.querySelectorAll('.home-hero .media');
+		this.mediaLeft = document.querySelector('.home-hero .media.--left');
+		this.mediaCenter = document.querySelector('.home-hero .media.--center');
+		this.mediaRight = document.querySelector('.home-hero .media.--right');
 		this.heroTitle = document.querySelector('.home-hero h1');
+		this.header = document.querySelector('.header');
 	}
 
 	_init() {
-		gsap.from(this.mediaElements, {
-			opacity: 0,
-			y: 50,
-			duration: 1,
-			stagger: 0.2,
-			ease: 'power2.out',
-			delay: 3,
-			scrollTrigger: {
-				trigger: this.homeHero,
-				start: 'top 80%',
-			},
-		});
-
-		gsap.from(this.heroTitle, {
-			opacity: 0,
-			y: 20,
-			duration: 1,
-			ease: 'power2.out',
-			delay: 3,
-			scrollTrigger: {
-				trigger: this.homeHero,
-				start: 'top 80%',
-			},
-		});
+		gsap.timeline()
+			.from(this.header, {
+				opacity: 0,
+				duration: 1,
+				ease: 'power2.out',
+				delay: 3
+			})
+			.from([this.mediaLeft, this.mediaRight], {
+				x: (index) => index === 0 ? '-100%' : '100%',
+				opacity: 0,
+				duration: 1,
+				ease: 'power2.out',
+				stagger: 0.2
+			}, '-=0.5')
+			.from(this.mediaCenter, {
+				opacity: 0,
+				duration: 1,
+				ease: 'power2.out'
+			}, '-=0.5')
+			.from(this.heroTitle, {
+				opacity: 0,
+				y: 20,
+				duration: 1,
+				ease: 'power2.out'
+			}, '-=0.5');
 	}
 }
