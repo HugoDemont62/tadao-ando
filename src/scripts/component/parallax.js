@@ -42,7 +42,6 @@ export default class Parallax {
 					y: 600 * direction, // Ajuster le mouvement Y
 					ease: 'none', // Pas d'accélération pour des mouvements fluides
 					scrollTrigger: {
-						markers: true,
 						trigger: this.container, // Élément déclencheur
 						start: 'top bottom', // Animation démarre quand l'élément entre dans la vue
 						end: 'bottom top', // Animation termine quand il quitte la vue

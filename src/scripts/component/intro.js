@@ -10,7 +10,6 @@ export default class Intro {
 	}
 
 	_getElements() {
-		this.textRows = document.querySelectorAll('.home-intro__text__row');
 		this.images = document.querySelectorAll('.home-intro__text__row .image');
 	}
 

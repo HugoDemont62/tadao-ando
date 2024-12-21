@@ -54,3 +54,38 @@ export function enter({ next }) {
 
   return tl;
 }
+
+export function beforeEnter({ next }) {
+  // Bloquer le défilement avant l'animation
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+  window.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
+
+  document.body.appendChild(overlay);
+
+  const tl = gsap.timeline({
+    onComplete: () => {
+      overlay.remove();
+      // Réactiver le défilement après l'animation
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';
+      window.removeEventListener('wheel', (e) => e.preventDefault());
+    },
+  });
+
+  tl.fromTo(
+    overlay,
+    { width: '100%' },
+    {
+      width: '0%',
+      duration: 1,
+      ease: 'power2.inOut',
+    }
+  ).from(next.container, {
+    opacity: 0,
+    duration: 1,
+    ease: 'power1.inOut',
+  });
+
+  return tl;
+}

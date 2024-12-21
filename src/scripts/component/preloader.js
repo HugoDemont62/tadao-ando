@@ -12,7 +12,7 @@ export default class Preloader {
 		this.rect = this.svgLogo?.querySelector('rect')
 		this.line = this.svgLogo?.querySelector('line')
 	}
-
+// TODO : block le scroll
 	_init() {
 		console.log('Préloader initialisé!')
 

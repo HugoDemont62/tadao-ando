@@ -8,6 +8,7 @@ import HomeHero from './component/homeHero.js';
 import { initCursor } from './component/cursor.js';
 import { initLenis } from './component/lenis.js';
 import Intro from './component/intro.js';
+import HomePicture from './component/homePicture.js'
 
 export default class App {
 	constructor() {
@@ -24,6 +25,7 @@ export default class App {
 		this._initHero();
 		this._initHomeAnimation();
 		this._initIntro();
+		this._initHomePicture();
 	}
 
 	// Récupération des éléments HTML
@@ -60,8 +62,11 @@ export default class App {
 	}
 
 	_initIntro() {
-		console.log('init intro');
-		new Intro();
+			new Intro();
+	}
+
+	_initHomePicture() {
+		new HomePicture();
 	}
 }
 
