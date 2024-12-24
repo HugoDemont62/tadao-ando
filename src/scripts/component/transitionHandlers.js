@@ -73,19 +73,5 @@ export function beforeEnter({ next }) {
     },
   });
 
-  tl.fromTo(
-    overlay,
-    { width: '100%' },
-    {
-      width: '0%',
-      duration: 1,
-      ease: 'power2.inOut',
-    }
-  ).from(next.container, {
-    opacity: 0,
-    duration: 1,
-    ease: 'power1.inOut',
-  });
-
   return tl;
 }
