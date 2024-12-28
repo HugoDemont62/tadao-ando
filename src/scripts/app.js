@@ -9,6 +9,7 @@ import { initCursor } from './component/cursor.js';
 import { initLenis } from './component/lenis.js';
 import Intro from './component/intro.js';
 import HomePicture from './component/homePicture.js'
+import ProjectsSlider from './component/projectsSlider.js'
 
 export default class App {
 	constructor() {
@@ -67,6 +68,10 @@ export default class App {
 
 	_initHomePicture() {
 		new HomePicture();
+	}
+
+	_initProjectsSlider() {
+		new ProjectsSlider();
 	}
 }
 

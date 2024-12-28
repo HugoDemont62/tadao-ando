@@ -32,6 +32,8 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      clip-path: none; /* Fallback */
+      background-color: black; /* Ajoute une couleur de fond temporaire */
 
       &:not(#slide-1) {
         clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
@@ -46,6 +48,7 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+        display: block !important;
       }
     }
 
@@ -117,4 +120,44 @@
       }
     }
   }
+}
+
+.projects-slider {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.projects-slider__track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.projects-slider__slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.projects-slider__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.projects-slider__button--prev {
+  left: 1rem;
+  z-index: 999;
+}
+
+.projects-slider__button--next {
+  right: 1rem;
+  z-index: 999;
+
 }

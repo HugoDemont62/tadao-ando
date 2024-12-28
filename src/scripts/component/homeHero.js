@@ -15,7 +15,6 @@ export default class HomeHero {
 		this.header = document.querySelector('.header')
 	}
 
-	// TODO :
 	_init() {
 		gsap.timeline()
 			.from([this.mediaLeft, this.mediaRight], {
